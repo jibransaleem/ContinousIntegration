@@ -45,7 +45,7 @@ if n == 0:
     cube = 0
     fifth = 0
 else:
-    square = n ** 2
+    square = n ** 0.5
     cube = n ** 3
     fifth = n ** 5
 
