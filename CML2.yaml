@@ -1,0 +1,26 @@
+# Create a step where:
+
+# train.py writes metrics to metrics.txt
+
+# Those metrics are added to report.md
+
+# The report is posted to the PR using cml-send-comment.
+name : cml2 
+on : [push , pull_request]
+env:
+    REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }
+jobs : 
+  default :
+    runs-on: ubuntu-latest
+
+    steps :
+      - name : run model 
+        run : | 
+          python train.py 
+          echo "### TRAIN METRICS ">> readme.md
+          cat metrics.txt >> readme.md
+          cml-publish plots >> readme.md
+
+      - name :  do-pr
+        run : |
+          cml-send-comment readme.md

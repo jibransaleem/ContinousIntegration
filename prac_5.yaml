@@ -1,0 +1,29 @@
+name : YAML_5_PRAC
+
+env:
+  APP_ENV : dev 
+
+on : [push , pull_request]
+
+jobs  : 
+  test:
+   
+    runs-on : ubuntu-latest
+    
+    steps:
+       
+      - name : config
+        uses : actions/checkout@v2 
+
+      - name : Build
+        uses  : actions/setup-python
+        with :
+          python-version:"3.11"
+        
+      - name : Set up 
+        run : |
+          pip install pytest
+          if [-f requirements.txt];then
+             pip install requirements.txt;
+          fi
+      - name :

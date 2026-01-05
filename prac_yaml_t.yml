@@ -1,0 +1,25 @@
+name: YAM_PAC_5
+
+env:
+  APP_ENV: dev   # environment variable
+
+on: [pull_request  , push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trigger on main or dev
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' }}
+        run: |
+          echo "Environment: $APP_ENV"
+
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "No requirements.txt file"
+          fi

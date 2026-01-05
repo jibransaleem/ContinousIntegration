@@ -1,0 +1,20 @@
+name: YAML_PRAC_4
+
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # Step 2: Run only on push events and check for file
+      - name: Run only on push
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          if [ -f test_data.csv ]; then
+            echo "File exists"
+          else
+            echo "File does not exist"
+          fi

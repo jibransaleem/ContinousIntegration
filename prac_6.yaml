@@ -1,0 +1,22 @@
+# Create a workflow that runs on every push and sets an environment variable APP_ENV = development.
+
+name: YAML_6_PRAC
+
+env:
+  APP_ENV : development
+on:
+  push
+
+
+jobs:
+  tests: 
+    runs-on: ubuntu-latest
+    steps:
+      - name : config
+        uses : actions/checkout@v4
+
+      - name : Hello
+        run : |
+         echo "hello"
+         echo env name is "$APP_ENV"
+  

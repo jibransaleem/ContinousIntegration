@@ -1,0 +1,16 @@
+name: YAML_PRAC_3
+
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Step 2: Run only on main branch
+      - name: Run on main branch
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          echo "Hello world"

@@ -1,0 +1,45 @@
+# Design a workflow with two jobs, where the second job depends on the first job’s success.
+        
+
+name: Prac_yaml_8
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          pip install pytest
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+
+  test:
+    needs: Build        # <-- runs ONLY if Build succeeds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print secret
+        env:
+          SEC_KEY: ${{ secrets.MY_SECRET }}
+        run: |
+          echo "Build succeeded — running second job"
+          echo "$SEC_KEY"
+
+    
