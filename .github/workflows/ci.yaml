@@ -31,4 +31,4 @@ jobs:
       - name: Linting
         run: |
           pip install ruff
-          ruff check .
+          ruff check app.py
