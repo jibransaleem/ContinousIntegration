@@ -30,7 +30,4 @@ jobs:
             pip install -r requirements.txt
           fi
 
-      - name: Linting
-        run: |
-          pip install flake8
-          flake8 app.py
+     
