@@ -31,4 +31,4 @@ jobs:
       - name: Linting
         run: |
           pip install flake8
-          flake8 k app.py
+          flake8 app.py
