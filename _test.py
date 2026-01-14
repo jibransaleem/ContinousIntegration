@@ -31,3 +31,7 @@ def test_fifth_power():
 def test_invalid_input():
     with pytest.raises(TypeError):
         square("string")
+
+test_fifth_power()
+test_cube()
+test_square()
